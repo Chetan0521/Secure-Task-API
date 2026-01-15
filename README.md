@@ -1,231 +1,165 @@
-# SecureTask Frontend
+# SecureTask API – Full Stack Project
 
-This is the frontend application for **SecureTask API**, built using **React (Vite)**.
-It demonstrates authentication, role-based access control, and task management by consuming the SecureTask backend APIs.
+SecureTask is a full-stack application built as part of a **Backend Developer (Intern) assignment**.  
+It demonstrates secure backend API development with authentication, role-based access control, and a functional frontend UI to interact with the APIs.
+
+The project is designed with **scalability, security, and clean architecture** in mind.
 
 ---
 
-## 🚀 Features
+## 🚀 Features Overview
 
-### User Features
-- User registration
-- User login with JWT authentication
-- Protected user dashboard
-- Create and view own tasks
-- Logout functionality
+### 🔐 Authentication & Authorization
+- User registration & login
+- Password hashing using bcrypt
+- JWT-based authentication
+- Role-Based Access Control (User / Admin)
 
-### Admin Features
-- Admin login
-- Admin dashboard
-- View all registered users
-- View all tasks with task owner information
+### 📝 Task Management
+- Create, read, update, and delete tasks
+- Ownership-based access (users can access only their own tasks)
+- Admin can view all users and all tasks
+
+### 🛡️ Security
+- JWT protected routes
+- Role-based middleware
+- Input validation & error handling
+- Environment variable based secrets
+
+### 📄 API Documentation
+- Swagger (OpenAPI) documentation available
+- APIs tested using Postman
+
+### 🎨 Frontend UI
+- React (Vite) frontend
+- User dashboard for task management
+- Admin dashboard to view users & tasks
+- Backend integration using Axios
+- Simple, clean UI for demonstration
 
 ---
 
 ## 🛠 Tech Stack
 
+### Backend
+- Node.js
+- Express.js
+- MongoDB (Mongoose)
+- JWT
+- bcrypt
+- Swagger (OpenAPI)
+
+### Frontend
 - React (Vite)
 - JavaScript (ES6)
 - Axios
 - Plain CSS
-- JWT-based authentication
-
----
-
-## 📂 Folder Structure
-
-```text
-src/
- ├── pages/
- │   ├── Register.jsx
- │   ├── Login.jsx
- │   ├── Dashboard.jsx
- │   └── AdminDashboard.jsx
- ├── services/
- │   ├── api.js
- │   └── auth.js
- ├── App.jsx
- ├── main.jsx
- └── index.css
-
-
-🔌 Backend Integration
-
-The frontend communicates with the backend at:
-
-🔌 Backend Integration
-
-The frontend communicates with the backend at:
-[text](http://localhost:5000/api/v1)
-Authentication is handled using JWT tokens stored in localStorage.
-
-Axios automatically attaches the token to every protected API request.
-
-▶️ Run the Frontend Locally
-1️⃣ Install dependencies
-
-cd frontend
-npm install
-
-2️⃣ Start development server
-npm run dev
-
-Frontend will run at:
-
-http://localhost:5173
-
-🔐 Authentication Flow
-
-1. Register a new user
-2. Login to receive JWT token
-3. Token tored in browser localStorage
-4. Role (admin/user) is decoded from JWT
-5. UI renders dashboard based on role
-
-
-🧪 Tested Scenarios
-
-User registration & login
-User task CRUD
-Admin access control
-Unauthorized access blocking
-Backend API integration
-
-📌 Notes
-
-Backend must be running before starting frontend
-Admin routes are visible only to admin users
-This frontend is intentionally simple and functional to demonstrate API usage
-
-
-        👨‍💻 Author
-        Chetan Shinde
-        Email : chetanshinde2643@gmail.com
-        GitHub: https://github.com/Chetan0521
-        Phone : 9665809591
-
-        Start Project
-
-        1. Start backend:
-
-        cd backend
-        npm run dev
-
-        2. Start frontend
-        cd frontend
-        npm run dev
-
-        User login → user dashboard
-        Admin login → admin dashboard
-
-# SecureTask API
-
-SecureTask API is a scalable RESTful backend system built with Node.js, Express, and MongoDB.  
-It supports JWT-based authentication, role-based access control (Admin/User), and secure CRUD operations.
-
----
-
-## 🚀 Features
-
-- User Registration & Login (JWT Authentication)
-- Role-Based Access Control (Admin / User)
-- Task Management (CRUD)
-- Ownership-based security
-- MongoDB Atlas integration
-- Swagger API Documentation
-- Modular & scalable architecture
-
----
-
-## 🛠 Tech Stack
-
-- Node.js
-- Express.js
-- MongoDB + Mongoose
-- JWT + bcrypt
-- Swagger (OpenAPI)
-- Postman
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-backend/
- ├── src/
- │   ├── controllers/
- │   ├── models/
- │   ├── routes/
- │   ├── middlewares/
- │   └── config/
- ├── docs/
- │   └── swagger.yaml
- ├── server.js
- └── .env
+Secure-Task-API/
+├── backend/
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── middlewares/
+│   │   └── config/
+│   ├── docs/
+│   │   └── swagger.yaml
+│   ├── README.md
+│   └── .env.example
+│
+├── frontend/
+│   ├── src/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── App.jsx
+│   │   └── index.css
+│   ├── README.md
+│   └── package.json
+│
+├── README.md   ← (This file)
+└── .gitignore
 
+⚙️ Environment Variables
 
-## ⚙️ Environment Variables
-
-Create .env file inside backend/:
+Create a .env file inside backend/ using the example below:
 
 PORT=5000
-JWT_SECRET=your_secret
-JWT_EXPIRES_IN=1d
 MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRES_IN=1d
 
 
-▶️ Run the Project
-
+▶️ How to Run the Project Locally
+1️⃣ Start Backend
 cd backend
 npm install
 npm run dev
 
-## 📄 API Documentation
-Swagger UI available at:
+Backend runs at:
+http://localhost:5000
 
+Swagger API Docs:
 http://localhost:5000/api-docs
+
+
+2️⃣ Start Frontend
+cd frontend
+npm install
+npm run dev
+
+
+Frontend runs at:
+http://localhost:5173
+
+🔐 Authentication Flow
+
+1. Register a user
+2. Login to receive JWT token
+3. Token stored in browser localStorage
+4. Axios attaches token to protected requests
+5. User role is decoded from JWT on frontend
+6. UI renders dashboard based on role
 
 
 🔐 Authentication Flow
 
-1.Register user
-2.Login user → Receive JWT
-3.Use JWT in Authorization: Bearer <token>
-4.Access protected routes
-
-
-🧪 Testing
-
-Tested using Postman
-Includes positive & negative cases
-Admin & User role verification
+Register a user
+Login to receive JWT token
+Token stored in browser localStorage
+Axios attaches token to protected requests
+User role is decoded from JWT on frontend
+UI renders dashboard based on role
 
 📈 Scalability Notes
 
-Modular MVC architecture
+Modular MVC-based backend architecture
+
 API versioning (/api/v1)
-Can be extended with Redis caching
-Docker-ready for containerization
+Easily extendable to microservices
+Can integrate Redis for caching
+Docker-ready for containerized deployment
 Supports horizontal scaling with load balancers
 
 
+Backend Developer 
+    ##  👨‍💻 Author: Chetan Shinde
+         Backend Developer, Data Analyst
+        Email : chetanshinde2643@gmail.com
+        GitHub: https://github.com/Chetan0521
+        Phone : 9665809591
 
-# 🟢 FINAL  STATUS
 
-| Requirement | Status |
-|-----------|--------|
-Backend APIs | ✅ |
-Auth + JWT | ✅ |
-RBAC | ✅ |
-CRUD | ✅ |
-MongoDB | ✅ |
-Swagger Docs | ✅ |
-README | ✅ |
-Frontend | 
+✅ Final Note
 
----
-
-## 🏁 FINAL VERDICT
-
-🎯 **BACKEND  = COMPLETE **
-
+This project was built to demonstrate:
+Secure backend API design
+Clean code organization
+Real-world authentication & authorization
+Backend–frontend integration
+Practical testing & documentation
